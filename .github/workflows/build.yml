@@ -6,6 +6,7 @@ on:
       - main
   pull_request:
     types: [assigned, opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -36,3 +37,9 @@ jobs:
         cc: ${{ matrix.compiler.cc }}
         cxx: ${{ matrix.compiler.cxx }}
         build-type: ${{ matrix.build }}
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: circt-hls
+        path: circt/build/bin
+
